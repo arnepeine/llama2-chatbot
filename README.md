@@ -39,9 +39,16 @@ For the LLaMA2 license agreement, please check the Meta Platforms, Inc official 
 
 ## Deploying on fly.io
 1. First you should [install flyctl](https://fly.io/docs/hands-on/install-flyctl/) and login from command line
-2. `fly launch` -> this will generate a fly.toml for you automatically
-3. `fly deploy --dockerfile Dockerfile` --> this will automatically package up the repo and deploy it on fly. If you have a free account, you can use `--ha=false` flag to only spin up one instance
-4. Go to your deployed fly app dashboard, click on `Secrets` from the left hand side nav, and click on `Use the Web CLI to manage your secrets without leaving your browser`. Once you are on your app's web CLI, export all secrets needed. i.e `export REPLICATE_API_TOKEN=your_replicate_token`. Refer to .env.example file for necessary secrets. 
+2. `fly launch` -> this will generate a fly.toml for you automatically.
+3. If using newer versions of flyctl, change 
+    [http_service]
+      internal_port = 80
+   to
+   [http_service]
+      internal_port = 8080
+   inside of fly.toml
+5. `fly deploy --dockerfile Dockerfile` --> this will automatically package up the repo and deploy it on fly. If you have a free account, you can use `--ha=false` flag to only spin up one instance
+6. Go to your deployed fly app dashboard, click on `Secrets` from the left hand side nav, and click on `Use the Web CLI to manage your secrets without leaving your browser`. Once you are on your app's web CLI, export all secrets needed. i.e `export REPLICATE_API_TOKEN=your_replicate_token`. Refer to .env.example file for necessary secrets. 
 
 ## Authors
 
